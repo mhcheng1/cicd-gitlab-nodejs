@@ -1,3 +1,5 @@
+const res = require('express/lib/response');
+
 const app = require('express')()
 
 
@@ -6,6 +8,7 @@ app.get('/', (req, res) => {
 })
 
 
-
 const port = process.env.port || 8080
-app.listen(port, () => {console.log(`app listening on port ${port}`)})
+const server = app.listen(port, () => {console.log(`app listening on port ${port}`)})
+
+module.exports = server;
