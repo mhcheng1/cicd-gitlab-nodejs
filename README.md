@@ -1,7 +1,7 @@
 # docker-nodejs
 
 * Running docker on localhost 8080 with exposed 8080 port
-`docker run -p 8080:8080` + docker image
+`docker run -p 8080:8080 <image id>`
 
 ### Useful commands
 
@@ -20,10 +20,10 @@ Remove
 
 `docker rm`
 
-Run container with image
+Run container with image id
 
-`docker run` + image
+`docker run <image id>`
 
 Create share volume to persist files
 
-`docker volume create` + name
+`docker volume create <folder name>`
