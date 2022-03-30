@@ -13,6 +13,12 @@ $ `docker tag <image> registry.heroku.com/<app-name>/web`
 $ `docker push registry.heroku.com/<app-name>/web`
 $ `heroku container:release -a <app-name> web`
 
+For this project
+$ `heroku container:login`
+$ `docker tag <image> registry.heroku.com/cicd-nodejsapp/web`
+$ `docker push registry.heroku.com/cicd-nodejsapp/web`
+$ `heroku container:release -a cicd-nodejsapp web`
+
 
 ### Useful commands
 
