@@ -6,6 +6,7 @@
 ### Useful commands
 
 Build an image with your image name
+
 `docker build -t <image name> . `
 
 List all containers running or not
