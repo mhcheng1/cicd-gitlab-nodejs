@@ -4,6 +4,10 @@ const app = require('express')()
 
 
 app.get('/', (req, res) => {
+    res.json({message: "Welcome to the Homepage!"})
+})
+
+app.get('/test', (req, res) => {
     res.json({message: "Test docker nodejs app"})
 })
 

@@ -1,9 +1,13 @@
+# Running npm and test on node image
 image: node:14-alpine
+
 stages:
   - npm
   - test
   - build
+  - release
 
+# /********* Install packages and store in artifacts ********/
 npm:
   stage: npm
   script:
@@ -14,7 +18,9 @@ npm:
   artifacts:
     paths:
       - node_modules/
+    expire_in: 3 days
 
+# /********* Run tests with pre-installed packages in artifact ********/
 run-test:
   stage: test
   dependencies:
@@ -22,13 +28,41 @@ run-test:
   script:
     - npm test
 
-docker-build:
-  image: docker:latest
+# /********* Builder docker with buildah and push to heroku ********/
+build_image_buildah:
+  image: registry.gitlab.com/majorhayden/container-buildah
   stage: build
-  services:
-    - docker:dind
+  variables:
+    STORAGE_DRIVER: "vfs"
+    BUILDAH_FORMAT: "docker"
   before_script:
-    - echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+    - dnf install -y nodejs
+    - curl https://cli-assets.heroku.com/install.sh | sh
+    - sed -i '/^mountopt =.*/d' /etc/containers/storage.conf
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
+    - buildah bud --iidfile iidfile -t cicd-nodejsapp:$CI_COMMIT_SHORT_SHA .
+    - buildah push --creds=_:$(heroku auth:token) $(cat iidfile) registry.heroku.com/cicd-nodejsapp/web
+
+# /********* Release built image to heroku only on master branch ********/
+release:
+  only:
+    - master
+  image: node:14-alpine
+  stage: release
+  before_script:
+    - apk add curl bash
+    - curl https://cli-assets.heroku.com/install.sh | sh
+  script:
+    - heroku container:release -a cicd-nodejsapp web
+
+# /********* Template for building docker image onto Gitlab ********/
+# docker-build:
+#   image: docker:latest
+#   stage: build
+#   services:
+#     - docker:dind
+#   before_script:
+#     - echo $CI_BUILD_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+#   script:
+#     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+#     - docker push "$CI_REGISTRY_IMAGE"

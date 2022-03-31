@@ -2,10 +2,21 @@ const request = require('supertest')
 const app = require('../app.js')
 
 describe("GET /", () => {
-    describe("return message from home page", () => {
+    describe("return json message from home page", () => {
         test("should response with a message", async () => {
             const response = await request(app).get('/')
-            expect(response.text).toBe('{"message":"Test docker nodejs app"}');
+            const result = JSON.parse(response.text);
+            expect(result.message).toBe("Welcome to the Homepage!");
+        })
+    })
+})
+
+describe("GET /test", () => {
+    describe("return json message from test page", () => {
+        test("should response with a test message", async () => {
+            const response = await request(app).get('/test')
+            const result = JSON.parse(response.text);
+            expect(result.message).toBe("Test docker nodejs app");
         })
     })
 })
