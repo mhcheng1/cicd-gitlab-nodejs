@@ -1,8 +1,11 @@
+# Running npm and test on node image
 image: node:14-alpine
+
 stages:
   - build
   - release
 
+# /********* Install packages and store in artifacts ********/
 # npm:
 #   stage: npm
 #   script:
@@ -14,6 +17,7 @@ stages:
 #     paths:
 #       - node_modules/
 
+# /********* Run tests with pre-installed packages in artifact ********/
 # run-test:
 #   stage: test
 #   dependencies:
@@ -21,6 +25,7 @@ stages:
 #   script:
 #     - npm test
 
+# /********* Template for building docker image onto Gitlab ********/
 # docker-build:
 #   image: docker:latest
 #   stage: build
@@ -32,6 +37,7 @@ stages:
 #     - docker build --pull -t "$CI_REGISTRY_IMAGE" .
 #     - docker push "$CI_REGISTRY_IMAGE"
 
+# /********* Builder docker with buildah and push to heroku ********/
 build_image_buildah:
   image: registry.gitlab.com/majorhayden/container-buildah
   stage: build
@@ -47,8 +53,8 @@ build_image_buildah:
     - buildah push --creds=_:$(heroku auth:token) $(cat iidfile) registry.heroku.com/cicd-nodejsapp/web
 
 release:
-  only:
-    - master
+  # only:
+  #   - master
   image: node:10.17-alpine
   stage: release
   before_script:
