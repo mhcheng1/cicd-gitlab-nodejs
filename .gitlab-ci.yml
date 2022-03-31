@@ -3,8 +3,8 @@ stages:
   - release
 
 build_image:
-  only:
-    - master
+  # only:
+  #   - master
   image: registry.gitlab.com/majorhayden/container-buildah
   stage: build
   variables:
