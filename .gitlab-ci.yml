@@ -1,11 +1,10 @@
 image: node:14-alpine
-
 stages:
   - npm
   - test
   - build
 
-npm:
+npm-install:
   stage: npm
   script:
     - npm install
@@ -16,7 +15,7 @@ npm:
     paths:
       - node_modules/
 
-test:
+run-test:
   stage: test
   dependencies:
     - npm
@@ -24,6 +23,7 @@ test:
     - npm test
 
 docker-build:
+  image: docker:latest
   stage: build
   services:
     - docker:dind
