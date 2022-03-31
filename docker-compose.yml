@@ -2,7 +2,7 @@ version: '3.7'
 services:
   gitlabee-runner:
     security_opt:
-        - seccomp:unconfined
+        -- seccomp:unconfined
     image: gitlab/gitlab-runner:alpine
     container_name: gitlabee-runner
     volumes:
