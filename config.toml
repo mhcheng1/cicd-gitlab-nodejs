@@ -1,0 +1,13 @@
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+[[runners]]
+  name = "gitlab-runner"
+  url = "https://gitlab.com/"
+  token = "GR1348941-qRm5YKmD4WKV_WjgVK5"
+  executor = "docker"
+  [runners.docker]
+    privileged = true
+    volumes = ["/cache", "/var/run/docker.sock:/var/run/docker.sock"]
