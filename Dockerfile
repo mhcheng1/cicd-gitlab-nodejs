@@ -9,6 +9,4 @@ RUN npm install
 
 COPY . .
 
-EXPOSE $PORT
-
 CMD ["node", "app.js"]
