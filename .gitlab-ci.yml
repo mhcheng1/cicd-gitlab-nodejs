@@ -4,7 +4,7 @@ stages:
   - test
   - build
 
-npm-install:
+npm:
   stage: npm
   script:
     - npm install

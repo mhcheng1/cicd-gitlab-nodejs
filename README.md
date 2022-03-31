@@ -30,9 +30,9 @@ For this project
 ### Guide for setting up own gitlab runner
 [https://bwgjoseph.com/how-to-setup-and-configure-your-own-gitlab-runner]
 
+<br>
 
 ### Useful docker commands
-<br>
 
 Build an image with your image name
 
