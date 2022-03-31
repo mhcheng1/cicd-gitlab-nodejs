@@ -3,6 +3,7 @@
 App deployed on Heroku using Gitlab CI/CD pipeline
 
 [Heroku Site](https://cicd-nodejsapp.herokuapp.com/)
+
 [Gitlab repo](https://gitlab.com/mhcheng1/docker-nodejs)
 
 Pipeline Stages
