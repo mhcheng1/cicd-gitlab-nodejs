@@ -1,4 +1,5 @@
-FROM node:12
+# using alpine to reduce size of image from 900mb to 150mb
+FROM node:14-alpine AS build
 
 WORKDIR /usr/src
 
@@ -8,8 +9,6 @@ RUN npm install
 
 COPY . .
 
-ENV PORT=8080
-
-EXPOSE 8080
+EXPOSE $PORT
 
 CMD ["node", "app.js"]

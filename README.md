@@ -1,11 +1,29 @@
 # docker-nodejs
 
-* Running docker on localhost 8080 with exposed 8080 port
+### Running Docker on localhost 8080 with exposed 8080 port
+
 `docker run -p 8080:8080 <image id>`
+
+
+### Deploy docker to heroku helpful guide
+[https://alediaferia.com/2019/12/07/continuous-deployment-gitlab-docker-heroku/]
+
+$ `heroku container:login`
+$ `docker tag <image> registry.heroku.com/<app-name>/web`
+$ `docker push registry.heroku.com/<app-name>/web`
+$ `heroku container:release -a <app-name> web`
+
+For this project
+$ `heroku container:login`
+$ `docker tag <image> registry.heroku.com/cicd-nodejsapp/web`
+$ `docker push registry.heroku.com/cicd-nodejsapp/web`
+$ `heroku container:release -a cicd-nodejsapp web`
+
 
 ### Useful commands
 
 Build an image with your image name
+
 `docker build -t <image name> . `
 
 List all containers running or not
