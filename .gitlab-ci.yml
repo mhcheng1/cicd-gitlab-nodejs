@@ -13,8 +13,6 @@ npm:
     paths:
       - node_modules/
   artifacts:
-    # expire_in: 1 days
-    # when: on_success
     paths:
       - node_modules/
 
@@ -26,7 +24,6 @@ test:
     - npm test
 
 docker-build:
-  image: docker:latest
   stage: build
   services:
     - docker:dind
