@@ -1,6 +1,8 @@
 version: '3.7'
 services:
   gitlabee-runner:
+    security_opt:
+        - seccomp:unconfined
     image: gitlab/gitlab-runner:alpine
     container_name: gitlabee-runner
     volumes:
@@ -10,6 +12,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     # This is not required to have but is something I do for all my service
     restart: unless-stopped
+
 
 volumes:
   gitlab_home_runner_config:
