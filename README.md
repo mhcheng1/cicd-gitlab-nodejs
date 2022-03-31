@@ -12,6 +12,9 @@ Pipeline Stages
 3. Build container image with buildah and push to Heroku
 4. Deploy on Heroku when merged into master branch
 
+![Pipeline image](assets/pipeline.png)
+
+<br>
 Steps for whole process
 
 1. Build nodejs app running on localhost
@@ -45,6 +48,7 @@ Commands
 
 `heroku container:release -a <app-name> web`
 
+<br>
 
 ### Guide for setting up own gitlab runner
 [https://bwgjoseph.com/how-to-setup-and-configure-your-own-gitlab-runner]
@@ -60,6 +64,8 @@ Helpful guide:
 Notes:
 
 Setup environment API key for heroku
+
+<br>
 
 ### Useful docker commands
 
