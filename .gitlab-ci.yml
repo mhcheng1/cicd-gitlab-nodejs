@@ -1,3 +1,5 @@
+image: node:14-alpine
+
 stages:
   - npm
   - test
@@ -6,14 +8,13 @@ stages:
 npm:
   stage: npm
   script:
-    - npm config set registry ${CI_NPM_REGISTRY}
     - npm install
   cache:
     paths:
       - node_modules/
   artifacts:
-    expire_in: 1 days
-    when: on_success
+    # expire_in: 1 days
+    # when: on_success
     paths:
       - node_modules/
 
