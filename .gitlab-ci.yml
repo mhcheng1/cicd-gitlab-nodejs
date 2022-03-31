@@ -1,7 +1,5 @@
 image: node:14-alpine
 stages:
-  # - npm
-  # - test
   - build
   - release
 
