@@ -43,10 +43,10 @@ build_image_buildah:
     - buildah bud --iidfile iidfile -t cicd-nodejsapp:$CI_COMMIT_SHORT_SHA .
     - buildah push --creds=_:$(heroku auth:token) $(cat iidfile) registry.heroku.com/cicd-nodejsapp/web
 
-# /********* Release built image to heroku ********/
+# /********* Release built image to heroku only on master branch ********/
 release:
-  # only:
-  #   - master
+  only:
+    - master
   image: node:14-alpine
   stage: release
   before_script:
