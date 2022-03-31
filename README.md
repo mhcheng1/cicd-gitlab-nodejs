@@ -1,6 +1,6 @@
 # Gitlab-docker-nodejsapp
 
-App deployed on Heroku using Gitlab CI/CD pipeline
+Continuous integration/deployment of Nodejs app on Heroku using Gitlab
 
 [Heroku Site](https://cicd-nodejsapp.herokuapp.com/)
 
