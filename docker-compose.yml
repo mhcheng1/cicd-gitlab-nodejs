@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  gitlabee-runner:
+    image: gitlab/gitlab-runner:alpine
+    container_name: gitlabee-runner
+    volumes:
+      - gitlab_home_runner_config:/home/gitlab-runner
+      - gitlab_etc_runner_config:/etc/gitlab-runner
+      # this is important as it needs to talk to your local docker daemon from within the container instance
+      - /var/run/docker.sock:/var/run/docker.sock
+    # This is not required to have but is something I do for all my service
+    restart: unless-stopped
+
+volumes:
+  gitlab_home_runner_config:
+    # external: true // Specify if you wish to create and manage yourself
+  gitlab_etc_runner_config:
+    # external: true // Specify if you wish to create and manage yourself
