@@ -1,13 +1,13 @@
 stages:
-  - build
   - test
+  - build
 
 test-project:
   stage: test
   image: docker:latest
   script:
+    - npm install
     - npm test
-
 
 docker-build:
   image: docker:latest
