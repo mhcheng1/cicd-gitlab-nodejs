@@ -4,24 +4,24 @@ stages:
   # - test
   - build
   - release
-  
-npm:
-  stage: npm
-  script:
-    - npm install
-  cache:
-    paths:
-      - node_modules/
-  artifacts:
-    paths:
-      - node_modules/
 
-run-test:
-  stage: test
-  dependencies:
-    - npm
-  script:
-    - npm test
+# npm:
+#   stage: npm
+#   script:
+#     - npm install
+#   cache:
+#     paths:
+#       - node_modules/
+#   artifacts:
+#     paths:
+#       - node_modules/
+
+# run-test:
+#   stage: test
+#   dependencies:
+#     - npm
+#   script:
+#     - npm test
 
 # docker-build:
 #   image: docker:latest
