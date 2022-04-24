@@ -68,7 +68,7 @@ Setup environment API key for heroku
 
 <br>
 
-### Useful docker commands
+### Useful docker commands in local environment
 
 Build an image with your image name
 
